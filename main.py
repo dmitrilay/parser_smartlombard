@@ -83,7 +83,9 @@ def open_convert_html2(name, type_data):
 
 
 def ps(name):
-    p1 = os.path.normpath(os.getcwd() + '/data/' + name)
+    head, tail = os.path.split(__file__)
+    p1 = os.path.normpath(f'{head}/data/{name}')
+    # p1 = os.path.normpath(os.getcwd() + '/data/' + name)
     return p1
 
 
