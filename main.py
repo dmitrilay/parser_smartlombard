@@ -12,7 +12,6 @@ def write_html(data, name, format_p='.html'):
     p1 = ps(f'{name}{format_p}')
     with open(p1, 'w', encoding='utf-8') as file:
         file.write(data.text)
-    print(data.text)
 
 
 def open_convert_html(name):
@@ -81,7 +80,6 @@ def open_convert_html2(name, type_data):
                     for i2 in data['body']['statuses']:
                         product_status = i2['productStatus']
                         price_list[i2['productId']][3] = product_status
-            # file_cleaner(file_folder)
 
 
 def ps(name):
@@ -110,7 +108,6 @@ def writing_file_excel():
     """
     Сохраняем данные в формате excel
     """
-    print(price_list)
     wb = Workbook()
     ws = wb.active
 
@@ -123,6 +120,6 @@ def writing_file_excel():
             ws.cell(row=i + 1, column=4, value=pr[3])
             i += 1
 
-    p0 = '''C:\Users\dmitr\OneDrive\Документы\1_Parser\mvideo1.xlsx'''
+    p0 = "C:/Users/dmitr/OneDrive/Документы/1_Parser/mvideo1.xlsx"
     p1 = os.path.normpath(p0)
     wb.save(filename=p1)
