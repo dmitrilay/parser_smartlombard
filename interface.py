@@ -16,7 +16,7 @@ while True:
         print('Операция выполнена!\n')
     elif p1 == '3':
         writing_file_excel()
-        file_cleaner()
+        # file_cleaner()
     elif p1 == '4':
         print('Выходим...\n')
         break

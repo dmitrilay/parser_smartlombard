@@ -4,7 +4,6 @@ import json
 from openpyxl import Workbook
 from settings import *
 
-session = requests.Session()
 price_list = dict()
 
 
@@ -28,31 +27,40 @@ def open_convert_html(name):
     return data
 
 
-def get_urls(urls, i):
-    response1 = session.get(urls, headers=HEADERS2)
-    time.sleep(1.0)
+def get_urls(urls, data, cookies, i):
+    response1 = requests.get(urls, params=data, headers=HEADERS, cookies=cookies)
     write_html(response1, i)
     return response1
 
 
+def post_urls(urls, data, cookies, i):
+    pr = data.split(',')
+    params = {"productIds": pr, "media": 'true', "categories": 'true', "availability": 'true'}
+    response = requests.post(urls, data=params, headers=HEADERS, cookies=cookies)
+    write_html(response, i)
+    return response
+
+
 def main():
     i = 0
-    get_urls(url, i)
-    get_urls(url_personalData, 'personalData')
-    product_groups = ['118', '65', '205']
+    res = requests.get(url, headers=HEADERS)
+    cookies = dict(res.cookies.items())
+
+    # get_urls(url_personalData, 'personalData')
+    product_groups = ['205']
     for pg in product_groups:
         count = 0
         while True:
-            url_count_id = f'{url_id}{pg}&offset={count}&limit=72&doTranslit=true'
-            get_urls(url_count_id, f'url_id/url_id{i}')
+            params = {'categoryId': pg, 'offset': count, 'limit': '72', 'doTranslit': 'true'}
+            get_urls(url_id, params, cookies, f'url_id/url_id{i}')
             pr124 = open_convert_html(ps(f'url_id/url_id{i}.html'))
             product_code = pr124[0]
-
-            get_urls(f'{url_product}{product_code}', f'url_product/url_product{i}')
-            get_urls(f'{url_prices}{product_code}', f'url_prices/url_prices{i}')
-            get_urls(f'{url_statuses}{product_code}', f'url_statuses/url_statuses{i}')
+            post_urls(f'{url_product}', product_code, cookies, f'url_product/url_product{i}')
+            params = {'productIds': product_code}
+            get_urls(url_prices, params, cookies, f'url_prices/url_prices{i}')
+            get_urls(url_statuses, params, cookies, f'url_statuses/url_statuses{i}')
             i += 1
-
+            time.sleep(3)
             print(count)
             count += 72
             counter = pr124[1]
