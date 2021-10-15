@@ -43,11 +43,8 @@ def post_urls(urls, data, cookies, i):
 
 def main():
     i = 0
-    res = requests.get(url, headers=HEADERS)
+    res = requests.get(url_start, headers=HEADERS)
     cookies = dict(res.cookies.items())
-
-    # get_urls(url_personalData, 'personalData')
-    product_groups = ['205']
     for pg in product_groups:
         count = 0
         while True:
@@ -114,7 +111,7 @@ def file_cleaner():
                 os.replace(src=file_folder1, dst=file_folder2)
 
 
-def writing_file_excel():
+def writing_file_excel(path_file_save):
     """
     Сохраняем данные в формате excel
     """
@@ -130,6 +127,4 @@ def writing_file_excel():
             ws.cell(row=i + 1, column=4, value=pr[3])
             i += 1
 
-    p0 = "C:/Users/dmitr/OneDrive/Документы/1_Parser/mvideo1.xlsx"
-    p1 = os.path.normpath(p0)
-    wb.save(filename=p1)
+    wb.save(filename=path_file_save)
