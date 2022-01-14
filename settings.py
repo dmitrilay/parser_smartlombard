@@ -2,7 +2,8 @@ import os
 
 url_start = 'https://www.mvideo.ru'
 url_id = f'https://www.mvideo.ru/bff/products/listing'
-url_product = 'https://www.mvideo.ru/bff/product-details/'
+# url_product = 'https://www.mvideo.ru/bff/product-details/'
+url_product = 'https://www.mvideo.ru/bff/product-details/list'
 url_prices = 'https://www.mvideo.ru/bff/products/prices'
 url_statuses = 'https://www.mvideo.ru/bff/products/statuses'
 
