@@ -7,6 +7,7 @@ from time import sleep
 import pickle
 from settings import *
 from a_file_system import *
+from datetime import date
 
 
 class WebParser():
@@ -87,7 +88,7 @@ class WebParser():
         return [folder_name, pageSource]
 
 
-def start():
+def start_web_parser(date_p=None, date_list=None):
     """
     30 purchase - покупка новых товаров
     31 sale - продажа новых товаров
@@ -96,22 +97,13 @@ def start():
     obj = WebParser()
     obj.authorization()
 
-    data_set_list = [['02.07.2022', '01.08.2022'],
-                     ['02.06.2022', '01.07.2022'],
-                     ['02.05.2022', '01.06.2022'],
-                     ['02.04.2022', '01.05.2022'],
-                     ['02.03.2022', '01.04.2022']]
+    _d = date.today().strftime('%d.%m.%Y') if date_p == None else date_p
+    date_list = [[_d, _d], ] if date_list == None else date_list
 
-    # obj.action(operation='31', date_start='02.07.2022', date_end='01.08.2022')
+    operation_dict = {'purchase': '30', 'sale': '31', 'repurchase': '32'}
 
-    # operation_dict = {'purchase': '30', 'sale': '31', 'repurchase': '32'}
-    operation_dict = {'sale': '31'}
-
-    for date in data_set_list:
+    for dt in date_list:
         for operations in operation_dict:
-            obj.action(operation=operation_dict[operations], date_start=date[0], date_end=date[1])
-            folder_name, pageSource = obj.save_html(operations, date)
+            obj.action(operation=operation_dict[operations], date_start=dt[0], date_end=dt[1])
+            folder_name, pageSource = obj.save_html(operations, dt)
             WorkFolderFiles.write_file(folder_name, pageSource)
-
-
-start()
