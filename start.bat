@@ -1,0 +1,1 @@
+D:\1.0 iT\Project\parser\smartlombard_request\env\Scripts\python.exe D:\1.0 iT\Project\parser\smartlombard_request\main\main.py %*
