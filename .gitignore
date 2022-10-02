@@ -1,3 +1,6 @@
+settings_dev.py
+settings_local.py
+
 cookies.pkl
 _d/
 data/

@@ -1,10 +1,4 @@
-import os
-import datetime
-
-"""Авторизация"""
-url = 'https://online.smartlombard.ru/login/'
-username = "admin@ch-shop.ru"
-password = "58800111"
+DEBUG = False
 
 """Настройки браузера"""
 options_web = {
@@ -26,3 +20,24 @@ FOLDERS = [
     'month/repurchase',
     'month/sale',
 ]
+
+try:
+    if DEBUG:
+        from settings_local import *
+    else:
+        from settings_dev import *
+
+except:
+    print('settings_dev', 'settings_local', "файлы не найдены")
+
+    """Авторизация"""
+    url = 'https://online.smartlombard.ru/login/'
+    username = ""
+    password = ""
+
+    """Авторизация на ch-shop.ru"""
+    token = "111111111"
+
+    """Данные для сайта"""
+    PATH_NAME = 'smartlombard/v2/v2/v3'
+    HOST = 'http://127.0.0.1:8000/'
