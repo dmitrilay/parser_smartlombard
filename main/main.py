@@ -4,10 +4,11 @@ from a_data_requests import sending_spec
 
 
 # auto
-start_web_parser()
-current_data, previous_data = start_changes_day()
-sending_spec(current_data)
-save_to_last_session(previous_data)
+def auto():
+    start_web_parser()
+    current_data, previous_data = start_changes_day()
+    sending_spec(current_data)
+    save_to_last_session(previous_data)
 
 
 # Test
