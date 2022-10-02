@@ -38,6 +38,7 @@ save_to_last_session(previous_data)
 #           ['02.03.2022', '01.04.2022'],
 #           ]
 
-# # start_web_parser(date_list=m_date)
-# data = start_changes_month(m_date)
+# start_web_parser(date_list=m_date)
+# current_data = start_changes_month(m_date)
+# print(current_data)
 # sending_spec(data)

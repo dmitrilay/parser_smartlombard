@@ -154,9 +154,9 @@ def start_changes_month(p_date):
     list_file_name = []
     for dt in p_date:
         start, end = dt[0], dt[1]
-        list_file_name.append(f'purchase/purchase_{start}-{end}.html')
-        list_file_name.append(f'repurchase/repurchase_{start}-{end}.html')
-        list_file_name.append(f'sale/sale_{start}-{end}.html')
+        list_file_name.append(f'month/purchase/purchase_{start}-{end}.html')
+        list_file_name.append(f'month/repurchase/repurchase_{start}-{end}.html')
+        list_file_name.append(f'month/sale/sale_{start}-{end}.html')
 
     for item in list_file_name:
         obj.open_file(item)
@@ -172,9 +172,9 @@ def start_changes_day(date_p=0):
     obj = WorkFolderFiles()
     handler = HtmlProcessing()
 
-    urls = [f'purchase/purchase_{_d}-{_d}.html',
-            f'repurchase/repurchase_{_d}-{_d}.html',
-            f'sale/sale_{_d}-{_d}.html']
+    urls = [f'day/purchase/purchase_{_d}-{_d}.html',
+            f'day/repurchase/repurchase_{_d}-{_d}.html',
+            f'day/sale/sale_{_d}-{_d}.html']
 
     for item in urls:
         obj.open_file(item)

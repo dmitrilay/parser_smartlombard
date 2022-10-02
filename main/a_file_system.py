@@ -1,6 +1,7 @@
 import os
 import json
 import csv
+from settings import FOLDERS
 
 head, tail = os.path.split(__file__)
 BASE_DIR = os.path.join(head, 'data')
@@ -13,6 +14,7 @@ class WorkFolderFiles():
         self.list_file = {}
         self.data = None
         self.json_data = None
+        self.__create_folder()
 
     def find_file(self, search_folder):
         _path = os.path.join(BASE_DIR, search_folder)
@@ -53,6 +55,7 @@ class WorkFolderFiles():
     @staticmethod
     def write_file(name_file, obj):
         _path = os.path.join(BASE_DIR, name_file)
+        _path = os.path.normpath(_path)
         with open(_path, 'w', encoding='utf-8') as file:
             file.write(obj)
 
@@ -64,7 +67,10 @@ class WorkFolderFiles():
             file_reader = csv.reader(file, delimiter=",")
             return (list(file_reader))
 
-
-# file = WorkFolderFiles()
-# file.find_file()
-# print(file.list_file)
+    @staticmethod
+    def __create_folder():
+        False if os.path.isdir(BASE_DIR) else os.mkdir(BASE_DIR)
+        for _folder in FOLDERS:
+            _path = os.path.join(BASE_DIR, _folder)
+            _path = os.path.normpath(_path)
+            False if os.path.isdir(_path) else os.makedirs(_path)
