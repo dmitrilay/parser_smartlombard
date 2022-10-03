@@ -17,13 +17,13 @@ def auto():
 
 # for _d in _m:
 #     # start_web_parser(_d)
-#     data = start_changes_day( _d)
-#     sending_spec(data)
+#     current_data, previous_data = start_changes_day(_d)
+#     sending_spec(current_data)
 #     # save_to_last_session(data, _d)
 #     print('===================', _d)
 
 """Проверка по дню"""
-# _d = '01.10.2022'
+# _d = '02.10.2022'
 # start_web_parser(_d)
 # current_data, previous_data = start_changes_day(_d)
 # sending_spec(current_data)
@@ -31,7 +31,8 @@ def auto():
 
 
 """Массовая загрузка данных"""
-# m_date = [['02.08.2022', '01.09.2022'],
+# m_date = [['02.09.2022', '01.10.2022'],
+#           ['02.08.2022', '01.09.2022'],
 #           ['02.07.2022', '01.08.2022'],
 #           ['02.06.2022', '01.07.2022'],
 #           ['02.05.2022', '01.06.2022'],
@@ -41,5 +42,4 @@ def auto():
 
 # start_web_parser(date_list=m_date)
 # current_data = start_changes_month(m_date)
-# print(current_data)
-# sending_spec(data)
+# sending_spec(current_data)
