@@ -107,9 +107,9 @@ class HtmlProcessing():
 
             _name, _cat, _sub_cat = self.get_cetegory(value[0][1])
 
-            if _storage != 0:
-                _m = [_name, _storage, price_per_unit, _cat, _sub_cat]
-                dict_array[re.sub('\D', '', key)] = _m
+            # if _storage != 0:
+            _m = [_name, _storage, price_per_unit, _cat, _sub_cat]
+            dict_array[re.sub('\D', '', key)] = _m
 
         self.result = dict_array
 
